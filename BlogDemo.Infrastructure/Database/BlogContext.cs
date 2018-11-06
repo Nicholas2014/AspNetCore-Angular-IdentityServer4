@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BlogDemo.Core.Entities;
+using BlogDemo.Infrastructure.Database.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogDemo.Infrastructure.Database
@@ -12,6 +13,18 @@ namespace BlogDemo.Infrastructure.Database
         {
             
         }
+
+        #region Overrides of DbContext
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        #endregion
+
         public DbSet<Post> Posts { get; set; }
     }
 }

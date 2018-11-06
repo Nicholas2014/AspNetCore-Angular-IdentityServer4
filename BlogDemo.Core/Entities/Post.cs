@@ -10,5 +10,6 @@ namespace BlogDemo.Core.Entities
         public string Author { get; set; }
         public string Body{ get; set; }
         public DateTime LastModified { get; set; }
+        public string Remark { get; set; }
     }
 }

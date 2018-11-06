@@ -58,6 +58,42 @@ Unit Of Work + Repository
 * Scope：每次http请求都会创建一个实例
 * Singleton：在第一次请求的时候就会创建一个实例，以后也只有这一个实例；或者在ConfigureServices这段代码运行的时候创建一个实例
 
+# DbContext 本身已经实现了Unit Of Work 和 Repository
+
+# Entity 约束
+使用IEntityTypeConfiguration<TEntity>
+DbContext里的OnModelCreating()
+
+#asp.net core提供了一套log api，它可以和各种各样的log提供商配合使用：
+内置6个
+console
+debug
+eventsource
+eventlog
+tracesource
+azure app service
+
+第三方log提供商
+Nlog
+Serilog
+
+依赖注入ILogger<TCategoryName>即可
+
+创建ILogger的时候指明分类
+分类名约定是调用类的全名(string)
+在ILoggerFactory上调用CreateLogger方法时可以指定分类的名称
+例如：
+ILogger<TodoController> logger
+logger.CreateLogger("TodoApi.Controllers.TodoController")
+
+# 添加Serilog https://serilog.net/
+Install-Package Serilog
+Install-Package Serilog.AspNetCore-DependencyVersion Highest
+* Sinks
+Install-Package Serilog.Sinks.Console
+Install-Package Serilog.Sinks.File
+
+
 
 
 
