@@ -93,6 +93,55 @@ Install-Package Serilog.AspNetCore-DependencyVersion Highest
 Install-Package Serilog.Sinks.Console
 Install-Package Serilog.Sinks.File
 
+# AutoMapper & FluentValidation
+* 安装Nuget包
+Install-Package AutoMapper
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+* 配置映射
+可以创建Profile
+CreateMap<TSource,TDestination>()
+services.AddAutoMapper()
+建议注入IMapper
+
+# FluentValidation https://fluentvalidation.net
+* 安装Nuget包
+FluentValidation
+FluentValidation.AspNetCore
+* 为Resource配置验证器
+继承于AbstractValidator
+注册到容器：services.AddTransient<>()
+
+
+# Asp.Net Core配置
+Name-Value集合
+运行时，可从多个来源加载
+多层结构
+
+配置提供商
+文件格式（INI,JSON,XML)
+命令行参数
+环境变量
+内存中的.NET对象
+未加密的Secret管理存储
+加密的用户存储，例如Azure密钥库
+自定义的提供商
+
+默认appSettings.json
+ConfigurationBuilder().AddJsonFile("appsettings.json").Build() -> IConfigurationRoot(IConfiguration)
+
+* 取得配置
+IConfiguration["Key:ChildKey"]
+针对"ConnectionStrings:xxx",可使用IConfiguration.GetConnectionString("xxx")
+* 映射到强类型
+IOptions<T>
+IOptionsSnapshot<T>
+
+ReloadOnChange,配置文件变化时，重新加载配置
+如果映射到强类型：对IOptions<T>无效，对IOptionsSnapshot<T>起作用
+
+# 异常处理
+
+
 
 
 
